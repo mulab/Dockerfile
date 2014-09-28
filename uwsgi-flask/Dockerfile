@@ -1,11 +1,9 @@
-FROM ubuntu:14.04
+FROM mulab/ubuntu:14.04
 MAINTAINER mulab.thu@gmail.com
-RUN rm /etc/apt/sources.list
-ADD sources.list /etc/apt/sources.list
+
 RUN apt-get update
 
 RUN apt-get install -y \
-    build-essential \
     python \
     python-dev \
     python-setuptools
