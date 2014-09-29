@@ -6,6 +6,7 @@ RUN apt-get install -y nginx
 RUN rm -rf /var/lib/apt/lists/*
 RUN echo "\ndaemon off;" >> /etc/nginx/nginx.conf
 RUN chown -R www-data:www-data /var/lib/nginx
+ADD default /etc/nginx/sites-enabled/default
 
 VOLUME ["/etc/nginx/sites-enabled", "/etc/nginx/certs", "/var/log/nginx", "/etc/nginx/conf.d", "/data"]
 
