@@ -1,29 +1,24 @@
-FROM mulab/ubuntu:14.04
+FROM mulab/nginx
 MAINTAINER mulab.thu@gmail.com
 
 RUN apt-get update
-
 RUN apt-get install -y \
     python \
     python-dev \
-    python-setuptools
-RUN apt-get install -y nginx supervisor
+    python-setuptools \
+    python-software-properties \
+    supervisor
+
 RUN easy_install pip
+RUN pip install uwsgi flask
+RUN pip install -r /data/requirements.txt
 
-RUN pip install uwsgi
+ADD nginx.conf /etc/ngins/sites-enabled/default
+ADD uwsgi_param /conf/uwsgi_param
+ADD uwsgi.ini /conf/uwsgi.ini
+ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-RUN apt-get install -y python-software-properties
-
-RUN echo "daemon off;" >> /etc/nginx/nginx.conf
-ADD . /home/docker/code/
-
-RUN rm /etc/nginx/sites-enabled/default
-RUN ln -s /home/docker/code/nginx.conf /etc/nginx/sites-enabled/
-RUN ln -s /home/docker/code/supervisord.conf /etc/supervisor/conf.d/
-
-RUN pip install -r /home/docker/code/requirements.txt
-
-VOLUME ["/home/docker/code/app", "/var/log/flask-uwsgi"]
+VOLUME ["/var/log/uwsgi-flask", "/conf", "/data"]
 
 EXPOSE 80
-CMD ["supervisord", "-n"]
+CMD ["supervisord", "-n", "-c /data"]
