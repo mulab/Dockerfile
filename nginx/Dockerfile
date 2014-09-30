@@ -1,4 +1,4 @@
-FROM mulab/ubuntu:14.04
+FROM mulab/ubuntu:latest
 MAINTAINER mulab.thu@gmail.com
 RUN add-apt-repository -y ppa:nginx/stable
 RUN apt-get update
