@@ -12,7 +12,7 @@ RUN apt-get install -y \
 RUN easy_install pip
 RUN pip install uwsgi flask
 
-COPY nginx.conf /etc/ngins/sites-enabled/default
+COPY nginx.conf /etc/nginx/sites-enabled/default
 COPY uwsgi_param /conf/uwsgi_param
 COPY uwsgi.ini /conf/uwsgi.ini
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
