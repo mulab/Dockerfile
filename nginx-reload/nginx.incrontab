@@ -1,0 +1,1 @@
+/etc/nginx/sites-enabled IN_NO_LOOP,IN_CREATE,IN_DELETE,IN_MODIFY,IN_MOVE /etc/init.d/nginx reload
