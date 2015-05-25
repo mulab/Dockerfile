@@ -15,5 +15,5 @@ WORKDIR /etc/nginx
 CMD ["nginx"]
 
 EXPOSE 80
-EXPOSE 442
+EXPOSE 443
 

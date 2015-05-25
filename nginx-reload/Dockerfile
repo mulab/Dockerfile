@@ -19,5 +19,5 @@ WORKDIR /etc/nginx
 CMD ["/start.sh"]
 
 EXPOSE 80
-EXPOSE 442
+EXPOSE 443
 
