@@ -1,5 +1,7 @@
 FROM cgcgbcbc/oracle-java-8
 
+WORKDIR /tmp
+
 RUN apt-get update && \
     apt-get -y install lib32stdc++6 lib32z1 && \
     wget http://dl.google.com/android/android-sdk_r24.2-linux.tgz
@@ -9,3 +11,6 @@ RUN (while :; do echo 'y'; sleep 2; done) | /usr/local/android-sdk-linux/tools/a
 
 RUN rm android-sdk_r24.2-linux.tgz
 
+RUN mkdir -p /etc/drone.d
+
+ADD android.sh /etc/drone.d/
